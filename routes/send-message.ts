@@ -18,7 +18,7 @@ export async function SendMessage(
       text: message,
     });
     response.sendStatus(200);
-  } catch (error: any) {
-    response.status(400).json({ error: error.message });
+  } catch (error: unknown) {
+    response.status(400).json({ error: (error as Error).message });
   }
 }

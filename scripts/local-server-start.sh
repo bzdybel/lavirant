@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Preload base bash configuration and functions
-source ./scripts/base.sh
+source bgord-scripts/base.sh
 
 info "Environment: local"
 info "Starting project..."
@@ -14,7 +14,7 @@ info "Copied CSS from @bgord/design"
 
 # ==========================================================
 
-./scripts/frontend-build.sh
+./bgord-scripts/frontend:build.sh
 info "Built frontend"
 
 # ==========================================================

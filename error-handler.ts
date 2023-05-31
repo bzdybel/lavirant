@@ -3,6 +3,7 @@ import * as bg from "@bgord/node";
 import { logger } from "./logger";
 
 export class ErrorHandler {
+  /* eslint-disable max-params */
   static handle: express.ErrorRequestHandler = async (
     error,
     request,
@@ -25,6 +26,16 @@ export class ErrorHandler {
         correlationId: request.requestId,
       });
       return response.redirect("/");
+    }
+
+    if (error instanceof bg.Errors.FileNotFoundError) {
+      logger.error({
+        message: "File not found",
+        operation: "file_not_found_error",
+        correlationId: request.requestId,
+      });
+
+      return response.status(404).send("File not found");
     }
 
     if (error instanceof bg.Errors.TooManyRequestsError) {
