@@ -1,9 +1,9 @@
+import { Link, LinkProps } from "preact-router/match";
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
-import { Link } from "preact-router/match";
 
 export const Navigation = () => {
-  const { width } = bg.useWindowDimensions();
+  bg.useWindowDimensions();
   // if (!width) return <NavigationShell />; // Don't SSR navigation
 
   // if (width <= 768) return <NavigationMobile />;
@@ -33,7 +33,7 @@ const NavigationDesktop = () => {
   );
 };
 
-const NavigationLink = (props: h.JSX.HTMLAttributes) => {
+function NavigationLink(props: LinkProps) {
   return (
     <Link
       activeClassName="c-link--active"
@@ -44,9 +44,9 @@ const NavigationLink = (props: h.JSX.HTMLAttributes) => {
       {...props}
     />
   );
-};
+}
 
-const NavigationLogo = (props: h.JSX.HTMLAttributes) => {
+const NavigationLogo = (props: LinkProps) => {
   const t = bg.useTranslations();
 
   return (
