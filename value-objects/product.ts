@@ -2,14 +2,19 @@ import { z } from "zod";
 import * as bg from "@bgord/node";
 
 import { ProductId } from "./product-id";
-import { Quantity } from "./quantity";
-import { CustomerId } from "./customer-id";
+import { ProductName } from "./product-name";
+import { ProductDescription } from "./product-description";
+import { ProductPrice } from "./product-price";
+import { ProductImage } from "./product-image";
 
 export const Product = z.object({
-  productId: ProductId,
+  id: ProductId,
+  name: ProductName,
+  description: ProductDescription,
+  price: ProductPrice,
+  image: ProductImage,
   createdAt: bg.Schema.Timestamp,
-  quantity: Quantity,
-  customerId: CustomerId,
+  updatedAt: bg.Schema.Timestamp,
 });
 
 export type ProductType = z.infer<typeof Product>;

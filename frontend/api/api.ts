@@ -22,9 +22,15 @@ export async function sendEmail(email: types.Email) {
   });
 }
 
-export async function addProductToCart(product: types.Product) {
+export async function addProductToCart(product: types.ProductCart) {
   return _api("/add-product-to-cart", {
     method: "POST",
     body: JSON.stringify(product),
   });
+}
+
+export async function getAllProducts(): Promise<types.Product[]> {
+  return _api(`/products`, { method: "GET" }).then((response) =>
+    response.ok ? response.json() : []
+  );
 }
