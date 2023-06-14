@@ -1,74 +1,73 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
+  url      = "file:./sqlite.db"
 }
 
 model Cart {
-  id        Int      @id @default(autoincrement())
-  customerId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String    @id @default(uuid())
+  customerId String    
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
-  customer  Customer @relation(fields: [customerId], references: [id])
-  items     CartItem[]
+  customer   Customer  @relation(fields: [customerId], references: [id])
+  items      CartItem[]
 }
-
-
 model CartItem {
-  id        Int      @id @default(autoincrement())
-  cartId    Int
-  productId Int
-  quantity  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String    @id @default(uuid())
+  cartId     String
+  productId  String
+  quantity   Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 
-  cart      Cart     @relation(fields: [cartId], references: [id])
-  product   Product  @relation(fields: [productId], references: [id])
+  cart      Cart      @relation(fields: [cartId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
 }
 
 model Product {
-  id        Int       @id @default(autoincrement())
-  name      String
-  description String?
-  price     Float
-  image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String    @id @default(uuid())
+  name         String
+  description  String?
+  price        Float
+  image        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  cartItems    CartItem[]
 }
 
 model Customer {
-  id          Int       @id @default(autoincrement())
-  firstName   String
-  lastName    String
-  email       String
-  phoneNumber String
+  id              String    @id @default(uuid())
+  firstName       String
+  lastName        String
+  email           String
+  phoneNumber     String
   deliveryAddress String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  orders      Order[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  orders          Order[]
+  carts           Cart[]
 }
+
 model Order {
-  id          Int       @id @default(autoincrement())
-  customerId  Int
-  customer    Customer  @relation(fields: [customerId], references: [id])
-  orderDate   DateTime
-  status      String
-  totalValue  Float
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id           String    @id @default(uuid())
+  customerId   String
+  customer     Customer  @relation(fields: [customerId], references: [id])
+  orderDate    DateTime
+  status       String
+  totalValue   Float
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
+
 model DiscountCode {
-  id        Int       @id @default(autoincrement())
-  code      String    @unique
-  discountPercentage Float
-  validUntil DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                  String    @id @default(uuid())
+  code                String    @unique
+  discountPercentage  Float
+  validUntil          DateTime
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 }

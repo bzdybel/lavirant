@@ -1,24 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+export const db = new PrismaClient();
+export * from "@prisma/client";
 
-async function main() {
-  await prisma.customer.create({
-    data: {
-      firstName: "John",
-      lastName: "Doe",
-      email: "johndoe@example.com",
-      phoneNumber: "123456789",
-      deliveryAddress: "123 Main Street, City",
-    },
-  });
-}
+async function main() {}
 
 main()
   .then(async () => {
-    await prisma.$disconnect();
+    await db.$disconnect();
   })
   .catch(async () => {
-    await prisma.$disconnect();
+    await db.$disconnect();
     process.exit(1);
   });
