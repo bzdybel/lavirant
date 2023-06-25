@@ -14,7 +14,7 @@ info "Copied CSS from @bgord/design"
 
 # ==========================================================
 
-./bgord-scripts/frontend:build.sh
+./bgord-scripts/frontend-build.sh
 info "Built frontend"
 
 # ==========================================================
@@ -30,4 +30,5 @@ npx ts-node-dev \
   --exit-child \
   --transpile-only \
   --rs \
+  --watch '.env.local' \
   -- index.ts

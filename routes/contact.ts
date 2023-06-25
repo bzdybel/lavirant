@@ -11,7 +11,7 @@ export async function Contact(
   response: express.Response,
   _next: express.NextFunction
 ) {
-  const translations = await bg.Language.getTranslations(
+  const translations = await bg.I18n.getTranslations(
     request.language,
     request.translationsPath
   );

@@ -9,15 +9,16 @@ import { logger } from "./logger";
 
 const app = express();
 
-bg.addExpressEssentials(app);
-bg.Handlebars.applyTo(app);
-bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
 bg.addExpressEssentials(app, {
   helmet: {
     contentSecurityPolicy: {
       directives: { "img-src": ["'self'", "images.unsplash.com"] },
     },
   },
+});
+bg.Handlebars.applyTo(app);
+bg.I18n.applyTo(app, {
+  translationsPath: bg.Schema.Path.parse("translations"),
 });
 
 new bg.Session({
@@ -60,14 +61,14 @@ app.post("/contact", bg.Route(Routes.SendMessage));
 app.get(
   "/dashboard",
   AuthShield.verify,
-  bg.Cache.handle(bg.CacheStrategy.never),
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
   bg.Route(Routes.Dashboard)
 );
 
 app.get(
   "/contact",
   AuthShield.verify,
-  bg.Cache.handle(bg.CacheStrategy.never),
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
   bg.Route(Routes.Contact)
 );
 
