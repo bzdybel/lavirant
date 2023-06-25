@@ -20,6 +20,7 @@ export class Html {
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
           />
+
           <meta name="description" content="Lavirant dashboard" />
 
           <link as="style" rel="stylesheet preload" href="/normalize.min.css" />

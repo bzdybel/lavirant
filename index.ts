@@ -12,6 +12,13 @@ const app = express();
 bg.addExpressEssentials(app);
 bg.Handlebars.applyTo(app);
 bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
+bg.addExpressEssentials(app, {
+  helmet: {
+    contentSecurityPolicy: {
+      directives: { "img-src": ["'self'", "images.unsplash.com"] },
+    },
+  },
+});
 
 new bg.Session({
   secret: Env.COOKIE_SECRET,
@@ -36,6 +43,12 @@ app.post(
 );
 
 app.post(
+  "/remove-product-from-cart",
+  AuthShield.verify,
+  bg.Route(Routes.RemoveProductFromCart)
+);
+
+app.post(
   "/login",
   bg.CsrfShield.verify,
   AuthShield.attach,
@@ -57,6 +70,9 @@ app.get(
   bg.Cache.handle(bg.CacheStrategy.never),
   bg.Route(Routes.Contact)
 );
+
+app.post("/user-cart", AuthShield.verify, bg.Route(Routes.UserCart));
+
 app.get("/logout", AuthShield.detach, (_, response) => response.redirect("/"));
 
 app.get("*", (_, response) => response.redirect("/"));

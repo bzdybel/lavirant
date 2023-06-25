@@ -29,8 +29,23 @@ export async function addProductToCart(product: types.ProductCart) {
   });
 }
 
+export async function removeProductFromCart(
+  product: Pick<types.CartItem, "cartId" | "productId">
+) {
+  return _api("/remove-product-from-cart", {
+    method: "POST",
+    body: JSON.stringify(product),
+  });
+}
 export async function getAllProducts(): Promise<types.Product[]> {
   return _api(`/products`, { method: "GET" }).then((response) =>
     response.ok ? response.json() : []
   );
+}
+
+export async function getUserCart(customerId: string): Promise<types.Cart> {
+  return _api(`/user-cart`, {
+    method: "POST",
+    body: JSON.stringify({ customerId }),
+  }).then((response) => (response.ok ? response.json() : []));
 }

@@ -1,6 +1,8 @@
 import { Link, LinkProps } from "preact-router/match";
 import { h } from "preact";
 import * as bg from "@bgord/frontend";
+import * as Icons from "iconoir-react";
+import { RightPanel } from "../checkout/RightPanel";
 
 export const Navigation = () => {
   bg.useWindowDimensions();
@@ -13,6 +15,7 @@ export const Navigation = () => {
 const NavigationDesktop = () => {
   const t = bg.useTranslations();
 
+  const navigation = bg.useToggle();
   return (
     <nav
       data-display="flex"
@@ -23,12 +26,24 @@ const NavigationDesktop = () => {
     >
       <NavigationLogo />
 
-      <div data-display="flex" data-gap="24">
+      <div data-cross="center" data-display="flex" data-gap="24">
         <NavigationLink href="/about">{t("about")}</NavigationLink>
 
         <NavigationLink href="/contact">{t("contact")}</NavigationLink>
       </div>
-      <NavigationLink href="/logout">{t("logout")}</NavigationLink>
+      <div data-cross="center" data-display="flex" data-gap="24">
+        <button
+          type="button"
+          class="c-button"
+          data-variant="bare"
+          onClick={navigation.enable}
+        >
+          <Icons.Cart data-color="white" height="24" width="24" />
+        </button>
+
+        <RightPanel navigation={navigation} />
+        <NavigationLink href="/logout">{t("logout")}</NavigationLink>
+      </div>
     </nav>
   );
 };
