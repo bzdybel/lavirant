@@ -3,7 +3,7 @@ import * as Icons from "iconoir-react";
 import * as bg from "@bgord/frontend";
 import { CartItem } from "../api/types";
 
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { removeProductFromCart } from "../api/api";
 interface CheckoutSummaryItemProps {
   cart: CartItem;
@@ -12,8 +12,12 @@ interface CheckoutSummaryItemProps {
 export const CheckoutSummaryItem = ({ cart }: CheckoutSummaryItemProps) => {
   const t = bg.useTranslations();
   const notify = bg.useToastTrigger();
+  const queryClient = useQueryClient();
 
   const removeProductFromCartRequest = useMutation(removeProductFromCart, {
+    onSuccess: () => {
+      queryClient.refetchQueries("userCart");
+    },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });
 
@@ -38,7 +42,7 @@ export const CheckoutSummaryItem = ({ cart }: CheckoutSummaryItemProps) => {
           data-br="4"
           src={cart.product.image}
           alt={""}
-          style={{ width: "50px", height: "50px" }}
+          style={{ aspectRatio: "1", maxWidth: "100px" }}
         />
 
         <div data-display="flex" data-direction="column" data-width="100%">
@@ -112,15 +116,6 @@ export const CheckoutSummaryItem = ({ cart }: CheckoutSummaryItemProps) => {
           </div>
         </div>
       </div>
-      {/* 
-      <button
-        type="submit"
-        title={t("article.delete")}
-        class="c-button"
-        data-variant="bare"
-      >
-        <Icons.RemoveSquare width="24" height="24" />
-      </button> */}
     </div>
   );
 };

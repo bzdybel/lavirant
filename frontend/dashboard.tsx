@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { RoutableProps } from "preact-router";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { addProductToCart, getAllProducts } from "./api/api";
 import * as bg from "@bgord/frontend";
 
@@ -9,9 +9,11 @@ export const Dashboard = (_: RoutableProps) => {
   const t = bg.useTranslations();
 
   const quantity = bg.useField<number>(1);
+  const queryClient = useQueryClient();
 
   const addProductToCartRequest = useMutation(addProductToCart, {
     onSuccess: () => {
+      queryClient.refetchQueries("userCart");
       notify({ message: "Product added to the cart" });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
