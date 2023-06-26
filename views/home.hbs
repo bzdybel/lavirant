@@ -1,0 +1,85 @@
+<style>
+  body { font-family: Arial, sans-serif; background-color: #f2f2f2; margin: 0;
+  padding: 0; } header { padding: 24px; background-color: #424242; text-align:
+  center; } h1 { font-size: 24px; letter-spacing: 2px; color: #ffffff;
+  font-weight: 500; margin: 0; } main { padding: 24px; margin: 72px auto;
+  max-width: 528px; } form { display: flex; flex-direction: column; align-items:
+  center; margin: auto; padding: 24px; background-color: #ffffff; border: 1px
+  solid #cfcfcf; border-width: 12px; border-color: #474747; max-width: 528px; }
+  h2 { font-size: 24px; letter-spacing: 1.5px; font-weight: 500; margin-bottom:
+  36px; margin-top: 12px; } label { font-size: 16px; margin-bottom: 6px; } input
+  { padding: 3px; } button { margin-top: 24px; margin-bottom: 24px; }
+</style>
+
+<header data-p="24" data-md-px="12" data-bg="gray-800">
+  <h1 data-fs="24" data-ls="2" data-color="gray-100" data-fw="500">LAVIRANT</h1>
+</header>
+
+<main data-p="24" data-md-p="12" data-pt="72" data-md-pt="48" data-mx="auto">
+  <form
+    data-display="flex"
+    data-direction="column"
+    data-cross="center"
+    data-mx="auto"
+    data-p="24"
+    data-md-px="12"
+    data-bg="gray-100"
+    data-bw="1"
+    data-bc="gray-200"
+    data-bwt="12"
+    data-bct="gray-700"
+    data-max-width="528"
+    method="POST"
+    action="/login"
+  >
+    <h2 data-fs="24" data-ls="1.5" data-fw="500" data-mb="36" data-mt="12">
+      Login
+    </h2>
+
+    <input type="hidden" name="_csrf" value="{{_csrf}}" />
+
+    <div data-display="flex" data-direction="column" data-width="100%">
+      <div data-display="flex" data-direction="column">
+        <label class="c-label" for="username" data-fs="16" data-mb="6">
+          Admin username
+        </label>
+        <input
+          placeholder="admin"
+          class="c-input"
+          id="username"
+          name="username"
+          pattern=".{3,}"
+          title="Minimum 3 characters"
+          autocomplete="off"
+          required
+          data-p="3"
+        />
+      </div>
+
+      <div data-display="flex" data-direction="column" data-mt="24">
+        <label class="c-label" for="password" data-fs="16" data-mb="6">
+          Admin password
+        </label>
+        <input
+          placeholder="*********"
+          class="c-input"
+          id="password"
+          name="password"
+          type="password"
+          required
+          data-p="3"
+        />
+      </div>
+
+      <button
+        class="c-button"
+        data-variant="primary"
+        type="submit"
+        data-mt="24"
+        data-mb="24"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</main>

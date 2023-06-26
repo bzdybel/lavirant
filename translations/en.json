@@ -1,0 +1,12 @@
+{
+  "app-name": "Lavirant",
+  "email": "Email",
+  "name": "Name",
+  "message": "Message",
+  "submit": "Submit",
+  "contact": "Contact",
+  "about": "About",
+  "logout": "Logout",
+  "email-sent": "Your email has been successfully sent!",
+  "product-added-to-cart": "Product added to the cart"
+}

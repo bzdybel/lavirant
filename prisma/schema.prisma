@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./sqlite.db"
+}
+
+model Cart {
+  id         String    @id @default(uuid())
+  customerId String    
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  customer   Customer  @relation(fields: [customerId], references: [id])
+  items      CartItem[]
+}
+model CartItem {
+  id         String    @id @default(uuid())
+  cartId     String
+  productId  String
+  quantity   Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  cart      Cart      @relation(fields: [cartId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id           String    @id @default(uuid())
+  name         String
+  description  String?
+  price        Float
+  image        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  cartItems    CartItem[]
+}
+
+model Customer {
+  id              String    @id @default(uuid())
+  firstName       String
+  lastName        String
+  email           String
+  phoneNumber     String
+  deliveryAddress String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  orders          Order[]
+  carts           Cart[]
+}
+
+model Order {
+  id           String    @id @default(uuid())
+  customerId   String
+  customer     Customer  @relation(fields: [customerId], references: [id])
+  orderDate    DateTime
+  status       String
+  totalValue   Float
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model DiscountCode {
+  id                  String    @id @default(uuid())
+  code                String    @unique
+  discountPercentage  Float
+  validUntil          DateTime
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
