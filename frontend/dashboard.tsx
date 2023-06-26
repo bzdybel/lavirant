@@ -25,6 +25,7 @@ export const Dashboard = (_: RoutableProps) => {
         addProductToCartRequest.mutate({
           productId: "89ada1b0-6e68-46b1-8134-24349f0bfcbc",
           quantity: 1,
+          customerId: "748defaa-3841-4d63-ab5c-fa043d0f53c0",
         })
       }
     >

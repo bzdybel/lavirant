@@ -1,4 +1,4 @@
-import { ProductType } from "../../value-objects";
+import type { CustomerIdType, ProductType } from "../../value-objects";
 
 export interface Email {
   name: string;
@@ -8,3 +8,4 @@ export interface Email {
 }
 
 export type Product = Omit<ProductType, "createdAt">;
+export type CustomerId = CustomerIdType;

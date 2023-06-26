@@ -14,6 +14,7 @@ export async function AddProductToCart(
   try {
     let cart = await Repos.CartRepository.getSingleCart(customerId);
     if (!cart) cart = await Repos.CartRepository.create(customerId);
+
     let cartItem = await Repos.CartRepository.getSingleCartItem(
       cart.id,
       productId
