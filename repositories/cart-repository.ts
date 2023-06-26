@@ -3,7 +3,7 @@ import { db } from "../infra/db";
 
 export class CartRepository {
   static async create(customerId: VO.CustomerIdType) {
-    return await db.cart.create({
+    return db.cart.create({
       data: {
         customerId,
       },
@@ -11,7 +11,7 @@ export class CartRepository {
   }
 
   static async getSingleCart(customerId: VO.CustomerIdType) {
-    return await db.cart.findFirst({
+    return db.cart.findFirst({
       where: {
         customerId,
       },
@@ -22,7 +22,7 @@ export class CartRepository {
     cartId: VO.CartIdType,
     productId: VO.ProductIdType
   ) {
-    return await db.cartItem.findFirst({
+    return db.cartItem.findFirst({
       where: {
         cartId,
         productId,
@@ -35,7 +35,7 @@ export class CartRepository {
     productId: VO.ProductIdType,
     quantity: VO.QuantityType
   ) {
-    await db.cartItem.create({
+    return db.cartItem.create({
       data: {
         cartId,
         productId,
@@ -49,7 +49,7 @@ export class CartRepository {
     cartItemQuantity: VO.QuantityType,
     quantity: VO.QuantityType
   ) {
-    await db.cartItem.update({
+    return db.cartItem.update({
       where: {
         id: cartId,
       },
