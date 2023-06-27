@@ -12,7 +12,7 @@ export const Dashboard = (_: RoutableProps) => {
 
   const addProductToCartRequest = useMutation(addProductToCart, {
     onSuccess: () => {
-      notify({ message: "Product added to the cart" });
+      notify({ message: t("product-added-to-cart") });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });

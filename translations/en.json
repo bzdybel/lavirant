@@ -8,5 +8,6 @@
   "about": "About",
   "logout": "Logout",
   "quantity": "Quantity",
-  "email-sent": "Your email has been successfully sent!"
+  "email-sent": "Your email has been successfully sent!",
+  "product-added-to-cart": "Product added to the cart"
 }

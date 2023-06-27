@@ -1,6 +1,7 @@
 import express from "express";
 import * as bg from "@bgord/node";
 import { logger } from "./logger";
+import { z } from "zod";
 
 export class ErrorHandler {
   /* eslint-disable max-params */
@@ -28,16 +29,6 @@ export class ErrorHandler {
       return response.redirect("/");
     }
 
-    if (error instanceof bg.Errors.FileNotFoundError) {
-      logger.error({
-        message: "File not found",
-        operation: "file_not_found_error",
-        correlationId: request.requestId,
-      });
-
-      return response.status(404).send("File not found");
-    }
-
     if (error instanceof bg.Errors.TooManyRequestsError) {
       logger.error({
         message: "Too many requests",
@@ -49,6 +40,14 @@ export class ErrorHandler {
       return response
         .status(429)
         .send({ message: "app.too_many_requests", _known: true });
+    }
+
+    if (error instanceof z.ZodError) {
+      const validationErrors = error.issues.map((issue) => issue.message);
+      return response.status(400).send({
+        message: validationErrors[0],
+        _known: true,
+      });
     }
 
     logger.error({

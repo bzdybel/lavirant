@@ -1,5 +1,5 @@
-import { ProductType } from "../../value-objects";
 import { ProductCartType } from "../../value-objects/product-cart";
+import type { CustomerIdType, ProductType } from "../../value-objects";
 
 export interface Email {
   name: string;
@@ -9,4 +9,5 @@ export interface Email {
 }
 
 export type ProductCart = Omit<ProductCartType, "createdAt">;
-export type Product = ProductType;
+export type Product = Omit<ProductType, "createdAt">;
+export type CustomerId = CustomerIdType;

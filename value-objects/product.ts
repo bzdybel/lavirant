@@ -6,6 +6,7 @@ import { ProductName } from "./product-name";
 import { ProductDescription } from "./product-description";
 import { ProductPrice } from "./product-price";
 import { ProductImage } from "./product-image";
+import { Quantity } from "./quantity";
 
 export const Product = z.object({
   id: ProductId,
@@ -15,6 +16,7 @@ export const Product = z.object({
   image: ProductImage,
   createdAt: bg.Schema.Timestamp,
   updatedAt: bg.Schema.Timestamp,
+  quantity: Quantity,
 });
 
 export type ProductType = z.infer<typeof Product>;
