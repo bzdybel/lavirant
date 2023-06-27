@@ -37,7 +37,6 @@ export async function ChangeProductQuantityInCart(
 
     return response.status(200).json({ success: true, cart: updatedCart });
   } catch (error) {
-    console.error(error);
     response.status(500).json({
       success: false,
       message: "Failed to change product quantity in cart",
