@@ -31,18 +31,21 @@ const NavigationDesktop = () => {
 
         <NavigationLink href="/contact">{t("contact")}</NavigationLink>
       </div>
-      <div data-cross="center" data-display="flex" data-gap="24">
+      <div data-cross="center" data-display="flex" data-gap="12">
         <button
           type="button"
           class="c-button"
           data-variant="bare"
           onClick={navigation.enable}
+          title={""}
         >
           <Icons.Cart data-color="white" height="24" width="24" />
         </button>
 
         <RightPanel navigation={navigation} />
-        <NavigationLink href="/logout">{t("logout")}</NavigationLink>
+        <NavigationLink href="/logout">
+          <Icons.LogOut data-color="white" height="24" width="24" />
+        </NavigationLink>
       </div>
     </nav>
   );

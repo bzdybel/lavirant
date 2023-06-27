@@ -10,5 +10,7 @@
   "quantity": "Quantity",
   "email-sent": "Your email has been successfully sent!",
   "checkout": "Checkout",
-  "currency": "PLN"
+  "currency": "PLN",
+  "cart": "Cart",
+  "cart-value": "Cart value"
 }

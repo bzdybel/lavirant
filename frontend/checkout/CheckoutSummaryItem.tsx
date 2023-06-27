@@ -30,6 +30,8 @@ export const CheckoutSummaryItem = ({ cartItem }: CheckoutSummaryItemProps) => {
       data-display="flex"
       data-width="100%"
       data-main="between"
+      data-bg="gray-800"
+      data-p="24"
     >
       <div
         data-display="flex"
@@ -50,10 +52,10 @@ export const CheckoutSummaryItem = ({ cartItem }: CheckoutSummaryItemProps) => {
 
         <div data-display="flex" data-direction="column" data-width="100%">
           <div data-display="flex" data-direction="column">
-            <label data-fw="900" data-color="orange-800">
+            <label data-fw="900" data-color="white">
               {cartItem.product.name}
             </label>
-            <label data-color="green-800">{cartItem.product.description}</label>
+            <label data-color="white">{cartItem.product.description}</label>
           </div>
           <div
             data-cross="center"
@@ -113,6 +115,7 @@ export const CheckoutSummaryItem = ({ cartItem }: CheckoutSummaryItemProps) => {
                 data-cross="center"
                 data-wrap="nowrap"
                 data-m="12"
+                data-color="gray-800"
                 onClick={onProductQuantityIncrease}
               >
                 <Icons.Plus height="24" width="24" />

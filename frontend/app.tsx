@@ -6,6 +6,7 @@ import * as bg from "@bgord/frontend";
 import { Contact } from "./contact/contact";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Navigation } from "./navigation/navigation";
+import { Checkout } from "./checkout/Checkout";
 
 export type InitialDataType = {
   url: string;
@@ -28,6 +29,7 @@ export function App(props: InitialDataType) {
 
           <Router url={props.url}>
             <Dashboard path="/dashboard" />
+            <Checkout path="checkout" />
             <Contact path="contact" />
           </Router>
         </bg.ToastsContextProvider>

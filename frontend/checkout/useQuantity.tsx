@@ -44,7 +44,7 @@ export const useQuantity = (
 
   useEffect(() => {
     quantitySync();
-  }, [cartItemQuantity.value, quantitySync]);
+  }, [cartItemQuantity.value]);
 
   return {
     onProductQuantityDecrease,
