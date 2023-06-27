@@ -56,7 +56,7 @@ export const CheckoutSummary = ({ disable }: CheckoutSummaryProps) => {
           style={{ gap: "20px" }}
         >
           {data?.items.map((cart) => {
-            return <CheckoutSummaryItem cart={cart} />;
+            return <CheckoutSummaryItem cartItem={cart} />;
           })}
         </div>
       </div>

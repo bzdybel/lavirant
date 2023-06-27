@@ -50,6 +50,12 @@ app.post(
 );
 
 app.post(
+  "/change-product-quantity-in-cart",
+  AuthShield.verify,
+  bg.Route(Routes.ChangeProductQuantityInCart)
+);
+
+app.post(
   "/login",
   bg.CsrfShield.verify,
   AuthShield.attach,

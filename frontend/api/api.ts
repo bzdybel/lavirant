@@ -49,3 +49,14 @@ export async function getUserCart(customerId: string): Promise<types.Cart> {
     body: JSON.stringify({ customerId }),
   }).then((response) => (response.ok ? response.json() : []));
 }
+
+export async function changeProductQuantityInCart(cartItem: {
+  cartId: types.CartItem["cartId"];
+  cartItemId: types.CartItem["id"];
+  quantity: types.CartItem["quantity"];
+}): Promise<types.Cart> {
+  return _api(`/change-product-quantity-in-cart`, {
+    method: "POST",
+    body: JSON.stringify({ cartItem }),
+  }).then((response) => (response.ok ? response.json() : []));
+}
