@@ -1,7 +1,7 @@
 import { h } from "preact";
 import Router from "preact-router";
 import { Dashboard } from "./dashboard";
-import { Schema, TranslationsType } from "@bgord/node";
+import type { Schema, TranslationsType } from "@bgord/node";
 import * as bg from "@bgord/frontend";
 import { Contact } from "./contact/contact";
 import { QueryClient, QueryClientProvider } from "react-query";

@@ -21,3 +21,12 @@ export async function sendEmail(email: types.Email) {
     body: JSON.stringify(email),
   });
 }
+
+export async function addProductToCart(
+  product: types.Product & { customerId: types.CustomerId }
+) {
+  return _api("/add-product-to-cart", {
+    method: "POST",
+    body: JSON.stringify(product),
+  });
+}

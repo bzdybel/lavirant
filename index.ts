@@ -28,6 +28,12 @@ bg.HttpLogger.applyTo(app, logger);
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
 app.post(
+  "/add-product-to-cart",
+  AuthShield.verify,
+  bg.Route(Routes.AddProductToCart)
+);
+
+app.post(
   "/login",
   bg.CsrfShield.verify,
   AuthShield.attach,
