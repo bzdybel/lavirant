@@ -45,16 +45,15 @@ export class CartRepository {
   }
 
   static async updateCartItem(
-    cartId: VO.CartIdType,
-    cartItemQuantity: VO.QuantityType,
+    cartItemId: VO.CartIdType,
     quantity: VO.QuantityType
   ) {
     return db.cartItem.update({
       where: {
-        id: cartId,
+        id: cartItemId,
       },
       data: {
-        quantity: cartItemQuantity + quantity,
+        quantity,
       },
     });
   }

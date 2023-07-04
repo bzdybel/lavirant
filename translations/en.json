@@ -13,5 +13,6 @@
   "cart": "Cart",
   "cart-value": "Cart value",
   "email-sent": "Your email has been successfully sent!",
-  "product-added-to-cart": "Product added to the cart"
+  "product-added-to-cart": "Product added to the cart",
+  "add": "Add"
 }

@@ -23,8 +23,7 @@ export async function AddProductToCart(
     if (cartItem) {
       await Repos.CartRepository.updateCartItem(
         cartItem.id,
-        cartItem.quantity,
-        quantity
+        cartItem.quantity + quantity
       );
     } else {
       await Repos.CartRepository.createCartItem(cart.id, productId, quantity);

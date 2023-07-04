@@ -43,7 +43,7 @@ export const Dashboard = (_: RoutableProps) => {
                     })
                   }
                 >
-                  Add
+                  {t("add")}
                 </button>
                 <input
                   id="quantity"

@@ -22,9 +22,7 @@ export async function sendEmail(email: types.Email) {
   });
 }
 
-export async function addProductToCart(
-  product: types.Product & { customerId: types.CustomerId }
-) {
+export async function addProductToCart(product: types.ProductToAdd) {
   return _api("/add-product-to-cart", {
     method: "POST",
     body: JSON.stringify(product),
