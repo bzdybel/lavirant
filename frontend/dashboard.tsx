@@ -29,7 +29,7 @@ export const Dashboard = (_: RoutableProps) => {
         })
       }
     >
-      Add
+      {t("add")}
     </button>
   );
 };
