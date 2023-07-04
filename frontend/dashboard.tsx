@@ -15,7 +15,7 @@ export const Dashboard = (_: RoutableProps) => {
   const addProductToCartRequest = useMutation(addProductToCart, {
     onSuccess: () => {
       queryClient.refetchQueries("userCart");
-      notify({ message: "Product added to the cart" });
+      notify({ message: t("product-added-to-cart") });
     },
     onError: (error: bg.ServerError) => notify({ message: error.message }),
   });

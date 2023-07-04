@@ -1,5 +1,5 @@
 import express from "express";
-import { db } from "../prisma/script";
+import { db } from "../infra/db";
 
 export async function RemoveProductFromCart(
   request: express.Request,
