@@ -3,6 +3,7 @@ import { h } from "preact";
 import * as bg from "@bgord/frontend";
 import * as Icons from "iconoir-react";
 import { RightPanel } from "../checkout/RightPanel";
+import { CheckoutSummaryPanel } from "../checkout/CheckoutSummaryPanel";
 
 export const Navigation = () => {
   bg.useWindowDimensions();
@@ -42,7 +43,9 @@ const NavigationDesktop = () => {
           <Icons.Cart data-color="white" height="24" width="24" />
         </button>
 
-        <RightPanel navigation={navigation} />
+        <RightPanel navigation={navigation}>
+          <CheckoutSummaryPanel disable={navigation.disable} />
+        </RightPanel>
         <NavigationLink href="/logout">
           <Icons.LogOut data-color="white" height="24" width="24" />
         </NavigationLink>

@@ -1,12 +1,12 @@
-import { h } from "preact";
+import { h, VNode } from "preact";
 import * as bg from "@bgord/frontend";
-import { CheckoutSummary } from "./CheckoutSummary";
 
 interface RightPanelProps {
   navigation: bg.UseToggleReturnType;
+  children: VNode;
 }
 
-export const RightPanel = ({ navigation }: RightPanelProps) => {
+export const RightPanel = ({ navigation, children }: RightPanelProps) => {
   return (
     <bg.Anima visible={navigation.on} effect="opacity">
       <nav
@@ -22,15 +22,15 @@ export const RightPanel = ({ navigation }: RightPanelProps) => {
         data-shadow
         data-bg="gray-600"
         style={{
+          maxWidth: 440,
           left: "unset",
-          width: "40%",
           borderRadius: "20px",
           right: "10px",
           top: "10px",
           height: "98%",
         }}
       >
-        <CheckoutSummary disable={navigation.disable} />
+        {children}
       </nav>
     </bg.Anima>
   );

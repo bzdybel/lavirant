@@ -1,31 +1,20 @@
 import { Fragment, h } from "preact";
 
 import * as Icons from "iconoir-react";
-import { useQuery } from "react-query";
-import { getUserCart } from "../api/api";
 import * as bg from "@bgord/frontend";
 import { CheckoutSummaryItem } from "./CheckoutSummaryItem";
 import { Link } from "../uti";
+import { useUserCart } from "./useUserCart";
 
-interface CheckoutSummaryProps {
+interface CheckoutSummaryPanelProps {
   disable: bg.UseToggleReturnType["disable"];
 }
 
-const useUserCart = (customerId: string) => {
-  return useQuery(["userCart", customerId], () => getUserCart(customerId));
-};
-
-export const CheckoutSummary = ({ disable }: CheckoutSummaryProps) => {
+export const CheckoutSummaryPanel = ({
+  disable,
+}: CheckoutSummaryPanelProps) => {
   const t = bg.useTranslations();
-  const id = "748defaa-3841-4d63-ab5c-fa043d0f53c0";
-  const { data } = useUserCart(id);
-
-  const totalPrice = data?.items
-    .reduce(
-      (accumulator, item) => accumulator + item.product.price * item.quantity,
-      0
-    )
-    .toFixed(2);
+  const { data, totalPrice } = useUserCart();
 
   return (
     <Fragment>

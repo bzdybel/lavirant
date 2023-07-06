@@ -29,8 +29,8 @@ export function App(props: InitialDataType) {
 
           <Router url={props.url}>
             <Dashboard path="/dashboard" />
-            <Checkout path="checkout" />
-            <Contact path="contact" />
+            <Checkout path="/checkout" />
+            <Contact path="/contact" />
           </Router>
         </bg.ToastsContextProvider>
       </bg.TranslationsContextProvider>
