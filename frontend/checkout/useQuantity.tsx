@@ -3,6 +3,7 @@ import { changeProductQuantityInCart } from "../api/api";
 import { useMutation, useQueryClient } from "react-query";
 import { CartItem } from "../api/types";
 import { useEffect } from "preact/hooks";
+import { QuantityType } from "../../value-objects";
 
 export const useQuantity = (
   cartItem: CartItem
@@ -14,7 +15,10 @@ export const useQuantity = (
   const queryClient = useQueryClient();
   const notify = bg.useToastTrigger();
 
-  const cartItemQuantity = bg.useField<number>(cartItem.quantity);
+  const cartItemQuantity = bg.useField<QuantityType>(
+    "cart-item-quantity",
+    cartItem.quantity
+  );
 
   const changeQuantityRequest = useMutation(changeProductQuantityInCart, {
     onSuccess: () => {
@@ -24,7 +28,7 @@ export const useQuantity = (
   });
 
   const quantitySync = bg.useRateLimiter({
-    limitMs: new bg.Time.Seconds(0.1).toMs(),
+    limitMs: bg.Time.Seconds(0.1).toMs(),
     action: () =>
       changeQuantityRequest.mutate({
         cartId: cartItem.cartId,
