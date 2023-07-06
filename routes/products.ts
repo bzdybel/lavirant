@@ -11,6 +11,6 @@ export async function Products(
 
     response.json(products);
   } catch (error) {
-    response.status(500).json({ error: "Failed to retrieve products" });
+    response.status(500).json({ message: "error.get.products", _known: true });
   }
 }

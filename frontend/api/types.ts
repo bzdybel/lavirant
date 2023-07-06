@@ -19,7 +19,7 @@ export type ProductId = ProductIdType;
 export type CustomerId = CustomerIdType;
 export type Quantity = QuantityType;
 
-export type NewProduct = {
+export type NewProductInCart = {
   productId: ProductId;
   quantity: Quantity;
   customerId: CustomerId;

@@ -3,12 +3,16 @@ import { RoutableProps } from "preact-router";
 import { useMutation, useQuery } from "react-query";
 import { addProductToCart, getAllProducts } from "./api/api";
 import * as bg from "@bgord/frontend";
+import { QuantityType } from "../value-objects";
+import { MIN_QUANTITY } from "../value-objects/min-quantity";
+import { MAX_QUANTITY } from "../value-objects/max-quantity";
+import { Info } from "./ui";
 
 export const Dashboard = (_: RoutableProps) => {
   const notify = bg.useToastTrigger();
   const t = bg.useTranslations();
 
-  const quantity = bg.useField<number>(1);
+  const quantity = bg.useField<QuantityType>("product-quantity", 1);
 
   const addProductToCartRequest = useMutation(addProductToCart, {
     onSuccess: () => {
@@ -18,6 +22,10 @@ export const Dashboard = (_: RoutableProps) => {
   });
 
   const products = useQuery("products", getAllProducts);
+
+  if (addProductToCartRequest.isError) {
+    return <Info data-m="24">{t("error.unexpected")}</Info>;
+  }
 
   return (
     <main
@@ -57,8 +65,8 @@ export const Dashboard = (_: RoutableProps) => {
                 name="quantity"
                 type="number"
                 required
-                min="0"
-                max="100"
+                min={MIN_QUANTITY}
+                max={MAX_QUANTITY}
                 value={quantity.value}
                 placeholder={t("quantity")}
                 class="c-input"
