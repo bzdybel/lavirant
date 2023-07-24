@@ -27,6 +27,8 @@ bg.HttpLogger.applyTo(app, logger);
 
 app.get("/", bg.CsrfShield.attach, bg.Route(Routes.Home));
 
+app.get("/products", AuthShield.verify, bg.Route(Routes.Products));
+
 app.post(
   "/add-product-to-cart",
   AuthShield.verify,

@@ -2,11 +2,20 @@ import { z } from "zod";
 import * as bg from "@bgord/node";
 
 import { ProductId } from "./product-id";
+import { ProductName } from "./product-name";
+import { ProductDescription } from "./product-description";
+import { ProductPrice } from "./product-price";
+import { ProductImage } from "./product-image";
 import { Quantity } from "./quantity";
 
 export const Product = z.object({
-  productId: ProductId,
+  id: ProductId,
+  name: ProductName,
+  description: ProductDescription,
+  price: ProductPrice,
+  image: ProductImage,
   createdAt: bg.Schema.Timestamp,
+  updatedAt: bg.Schema.Timestamp,
   quantity: Quantity,
 });
 

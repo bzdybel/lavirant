@@ -7,7 +7,11 @@
   "contact": "Contact",
   "about": "About",
   "logout": "Logout",
+  "quantity": "Quantity",
   "email-sent": "Your email has been successfully sent!",
   "product-added-to-cart": "Product added to the cart",
-  "add": "Add"
+  "add": "Add",
+
+  "error.get.products": "Failed to retrieve products",
+  "error.unexpected": "An unexpected error occurred, please try again later"
 }

@@ -1,32 +1,22 @@
 import * as types from "./types";
-import { ServerError } from "./server-error";
-
-export const _api: typeof fetch = (input, init) =>
-  fetch(input, {
-    mode: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-
-      "time-zone-offset": new Date().getTimezoneOffset().toString(),
-    },
-    redirect: "follow",
-    ...init,
-  })
-    .then(ServerError.extract)
-    .catch(ServerError.handle);
+import * as bg from "@bgord/frontend";
 
 export async function sendEmail(email: types.Email) {
-  return _api("/contact", {
+  return bg.API("/contact", {
     method: "POST",
     body: JSON.stringify(email),
   });
 }
 
-export async function addProductToCart(
-  product: types.Product & { customerId: types.CustomerId }
-) {
-  return _api("/add-product-to-cart", {
+export async function addProductToCart(product: types.NewProductInCart) {
+  return bg.API("/add-product-to-cart", {
     method: "POST",
     body: JSON.stringify(product),
   });
+}
+
+export async function getAllProducts(): Promise<types.Product[]> {
+  return bg
+    .API(`/products`, { method: "GET" })
+    .then((response) => (response.ok ? response.json() : []));
 }
