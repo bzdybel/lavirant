@@ -7,3 +7,4 @@ export * from "./products";
 export * from "./user-cart";
 export * from "./remove-product-from-cart";
 export * from "./change-product-quantity-in-cart";
+export * from "./checkout";

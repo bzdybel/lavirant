@@ -15,8 +15,7 @@ export const Layout = (props: h.JSX.IntrinsicElements["section"]) => {
       data-mx="auto"
       data-md-pl="6"
       data-md-pr="3"
-      data-max-width="768"
-      data-md-max-width="100%"
+      data-max-width="1296"
       data-width="100%"
       {...props}
     >

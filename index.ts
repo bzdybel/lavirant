@@ -78,6 +78,13 @@ app.get(
   bg.Route(Routes.Contact)
 );
 
+app.get(
+  "/checkout",
+  AuthShield.verify,
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
+  bg.Route(Routes.Checkout)
+);
+
 app.post("/user-cart", AuthShield.verify, bg.Route(Routes.UserCart));
 
 app.get("/logout", AuthShield.detach, (_, response) => response.redirect("/"));
