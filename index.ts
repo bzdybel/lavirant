@@ -9,9 +9,17 @@ import { logger } from "./logger";
 
 const app = express();
 
-bg.addExpressEssentials(app);
+bg.addExpressEssentials(app, {
+  helmet: {
+    contentSecurityPolicy: {
+      directives: { "img-src": ["'self'", "images.unsplash.com"] },
+    },
+  },
+});
 bg.Handlebars.applyTo(app);
-bg.Language.applyTo(app, bg.Schema.Path.parse("translations"));
+bg.I18n.applyTo(app, {
+  translationsPath: bg.Schema.Path.parse("translations"),
+});
 
 new bg.Session({
   secret: Env.COOKIE_SECRET,
@@ -36,6 +44,18 @@ app.post(
 );
 
 app.post(
+  "/remove-product-from-cart",
+  AuthShield.verify,
+  bg.Route(Routes.RemoveProductFromCart)
+);
+
+app.post(
+  "/change-product-quantity-in-cart",
+  AuthShield.verify,
+  bg.Route(Routes.ChangeProductQuantityInCart)
+);
+
+app.post(
   "/login",
   bg.CsrfShield.verify,
   AuthShield.attach,
@@ -47,16 +67,19 @@ app.post("/contact", bg.Route(Routes.SendMessage));
 app.get(
   "/dashboard",
   AuthShield.verify,
-  bg.Cache.handle(bg.CacheStrategy.never),
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
   bg.Route(Routes.Dashboard)
 );
 
 app.get(
   "/contact",
   AuthShield.verify,
-  bg.Cache.handle(bg.CacheStrategy.never),
+  bg.CacheStaticFiles.handle(bg.CacheStaticFilesStrategy.never),
   bg.Route(Routes.Contact)
 );
+
+app.post("/user-cart", AuthShield.verify, bg.Route(Routes.UserCart));
+
 app.get("/logout", AuthShield.detach, (_, response) => response.redirect("/"));
 
 app.get("*", (_, response) => response.redirect("/"));

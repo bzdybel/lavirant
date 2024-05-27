@@ -1,9 +1,11 @@
-import { ProductCartType } from "../../value-objects/product-cart";
 import type {
   CustomerIdType,
-  ProductIdType,
   ProductType,
+  CartType,
+  CartItemType,
+  ProductCartType,
   QuantityType,
+  ProductIdType,
 } from "../../value-objects";
 
 export interface Email {
@@ -14,6 +16,8 @@ export interface Email {
 }
 
 export type ProductCart = Omit<ProductCartType, "createdAt">;
+export type Cart = CartType;
+export type CartItem = CartItemType;
 export type Product = Omit<ProductType, "createdAt">;
 export type ProductId = ProductIdType;
 export type CustomerId = CustomerIdType;

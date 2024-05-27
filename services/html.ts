@@ -20,6 +20,7 @@ export class Html {
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
           />
+
           <meta name="description" content="Lavirant dashboard" />
 
           <link as="style" rel="stylesheet preload" href="/normalize.min.css" />
@@ -64,7 +65,7 @@ export class Html {
             }
 
             [data-shadow] {
-              box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+              box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
             }
 
             .c-link--active {
@@ -75,10 +76,7 @@ export class Html {
           <title>Lavirant</title>
         </head>
 
-        <body
-          data-mx="auto"
-          style="background: linear-gradient(to right, #d9a7c7, #fffcdc)"
-        >
+        <body data-mx="auto" data-bg="gray-200">
           <div id="root">${config.frontend}</div>
 
           <script>

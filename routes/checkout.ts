@@ -6,7 +6,7 @@ import * as Services from "../services";
 import { App } from "../frontend/app";
 import * as bg from "@bgord/node";
 
-export async function Contact(
+export async function Checkout(
   request: express.Request,
   response: express.Response,
   _next: express.NextFunction
@@ -20,7 +20,7 @@ export async function Contact(
     translations,
   };
 
-  const frontend = render(App({ ...state, url: "/contact" }));
+  const frontend = render(App({ ...state, url: "/checkout" }));
   const html = Services.Html.process({
     frontend,
     state,
